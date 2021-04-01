@@ -22,7 +22,7 @@ jobs:
       - name: Cache
         uses: actions/cache@v2.1.4
         with:
-          paths: |
+          path: |
             build
           key: ${{ runner.os }}-${{ hashFiles(github.ref) }}
       - name: Build FFMpeg
