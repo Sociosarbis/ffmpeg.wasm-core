@@ -19,6 +19,12 @@ jobs:
         with:
           fetch-depth: 0
           submodules: recursive
+      - name: Cache
+        uses: actions/cache@v2.1.4
+        with:
+          paths: |
+            build
+          key: ${{ runner.os }}-${{ hashFiles(github.ref) }}
       - name: Build FFMpeg
         shell: bash
         run: |
