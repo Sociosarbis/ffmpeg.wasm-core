@@ -12,7 +12,6 @@ FLAGS=(
   -lavdevice -lavfilter -lavformat -lavcodec -lswresample -lswscale -lavutil -lpostproc -lm -lx264 -lx265 -lvpx -lwavpack -lmp3lame -lfdk-aac -lvorbis -lvorbisenc -lvorbisfile -logg -ltheora -ltheoraenc -ltheoradec -lz -lfreetype -lopus -lwebp -pthread
   fftools/ffmpeg_opt.c fftools/ffmpeg_filter.c fftools/ffmpeg_hw.c fftools/cmdutils.c fftools/ffmpeg.c
   -o wasm/dist/ffmpeg-core.js
-  -g2
   -s USE_SDL=2                                  # use SDL2
   -s USE_PTHREADS=1                             # enable pthreads support
   -s PROXY_TO_PTHREAD=1                         # detach main() from browser/UI main thread
@@ -21,7 +20,7 @@ FLAGS=(
   -s MODULARIZE=1                               # use modularized version to be more flexible
   -s EXPORT_NAME="createFFmpegCore"             # assign export name for browser
   -s EXPORTED_FUNCTIONS="[_main, _proxy_main]"  # export main and proxy_main funcs
-  -s EXTRA_EXPORTED_RUNTIME_METHODS="[FS, cwrap, ccall, setValue, writeAsciiToMemory]"   # export preamble funcs
+  -s EXTRA_EXPORTED_RUNTIME_METHODS="[FS, cwrap, ccall, setValue, writeAsciiToMemory, exit]"   # export preamble funcs
   -s INITIAL_MEMORY=2146435072                  # 64 KB * 1024 * 16 * 2047 = 2146435072 bytes ~= 2 GB
   $OPTIM_FLAGS
 )
