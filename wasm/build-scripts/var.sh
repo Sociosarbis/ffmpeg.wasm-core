@@ -60,6 +60,13 @@ FFMPEG_CONFIG_FLAGS_BASE=(
   --dep-cc=emcc
 )
 
+# ccache related env
+export CCACHE_BASEDIR=$ROOT_DIR
+export CCACHE_DIR=$CCACHE_BASEDIR/.ccache
+export CCACHE_COMPRESS=true
+export CCACHE_COMPRESSLEVEL=6
+export CCACHE_MAXSIZE=400M
+
 echo "EMSDK=$EMSDK"
 echo "OPTIM_FLAGS=$OPTIM_FLAGS"
 echo "BUILD_DIR=$BUILD_DIR"
