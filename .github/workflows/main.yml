@@ -19,12 +19,19 @@ jobs:
         with:
           fetch-depth: 0
           submodules: recursive
-      - name: Cache
+      - name: Prepare ccache timestamp
+        id: ccache_cache_timestamp
+        shell: bash
+        run: |
+          echo "::set-output name=timestamp::$(date +"%s")"
+      - name: Cache ccache files
         uses: actions/cache@v2.1.4
         with:
-          path: |
-            build
-          key: ${{ runner.os }}-${{ hashFiles(github.ref) }}
+          path: .ccache
+          key: ${{ runner.os }}-ccache-${{ github.ref }}-${{ steps.ccache_cache_timestamp.outputs.timestamp }}
+          restore-keys: |
+            ${{ runner.os }}-ccache-${{ github.ref }}-
+            ${{ runner.os }}-ccache-
       - name: Build FFMpeg
         shell: bash
         run: |
