@@ -21,7 +21,7 @@ FLAGS=(
   -s EXPORT_NAME="createFFmpegCore"             # assign export name for browser
   -s EXPORTED_FUNCTIONS="[_main, _proxy_main]"  # export main and proxy_main funcs
   -s EXTRA_EXPORTED_RUNTIME_METHODS="[FS, cwrap, ccall, setValue, writeAsciiToMemory]"   # export preamble funcs
-  -s INITIAL_MEMORY=262080                  # 64 KB * 4095 = 262080000 bytes ~= 262 MB
+  -s INITIAL_MEMORY=201261056                # 64 * 1024 * 3071 = 201261056 bytes ~= 201 MB
   --post-js wasm/post-js.js
   $OPTIM_FLAGS
 )
